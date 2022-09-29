@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>This is the title of the webpage!</title>
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+      import { getMessaging, getToken } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging.js';
+
+
+      const app = initializeApp({
+          apiKey: "AIzaSyB7SYES1Ip4CTcuEa9Yh9L1JAdYbYzhckE",
+          authDomain: "testproject-8b159.firebaseapp.com",
+          projectId: "testproject-8b159",
+          storageBucket: "testproject-8b159.appspot.com",
+          messagingSenderId: "574406259500",
+          appId: "1:574406259500:web:d220a331b721fd38abb289"
+      });
+
+      const messaging = getMessaging(app);
+      async function GenerateToken()
+      {
+        const token = await getToken(messaging, { vapidKey: 'BOscj7mzhC8lJePZm6eRp_OYXl35Qf9SBnhTA8rXcOiZSv7n-6QVzoR6HAw_8Cso4CdpHu-WtFDBRZC4JAVJtd0' });
+        if (token) {
+            console.log('My token is: ' + token);
+        } else {
+            console.log('No token!');
+        }
+      }
+      
+      document.getElementById("token_button").onclick = async () => await GenerateToken();
+    </script>
+  </head>
+  <body>
+    <button id="token_button">Click to generate token</button>
+  </body>
+</html>
