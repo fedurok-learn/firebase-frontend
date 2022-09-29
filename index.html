@@ -4,8 +4,7 @@
     <title>This is the title of the webpage!</title>
     <script type="module">
       import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
-      import { getMessaging, getToken } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging.js';
-
+      import { getMessaging, getToken, onMessage } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging.js';
 
       const app = initializeApp({
           apiKey: "AIzaSyB7SYES1Ip4CTcuEa9Yh9L1JAdYbYzhckE",
@@ -26,6 +25,10 @@
             console.log('No token!');
         }
       }
+
+      onMessage(messaging, (payload) => {
+        console.log('Message received. ', payload);
+      });
       
       document.getElementById("token_button").onclick = async () => await GenerateToken();
     </script>
